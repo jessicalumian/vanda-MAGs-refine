@@ -1,0 +1,9 @@
+# cluster_config.yml - cluster configuration
+__default__:
+    account: jemizzi
+    partition: bmm
+    time: 1-0:00:00 # time limit for each job
+    nodes: 1
+    chdir: /home/jemizzi/VANDA/
+    output: /report/job-%j.out
+    error: /report/job-%j.err

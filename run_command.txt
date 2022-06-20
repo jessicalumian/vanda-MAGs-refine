@@ -1,0 +1,1 @@
+snakemake --cluster "sbatch -t {cluster.time} -p {cluster.partition} -N {cluster.nodes}" --cluster-config cluster_config.yml --jobs 2 --latency-wait=15 --use-conda
