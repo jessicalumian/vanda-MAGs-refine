@@ -4,6 +4,6 @@ __default__:
     partition: bmm
     time: 1-0:00:00 # time limit for each job
     nodes: 1
-    chdir: /home/jemizzi/VANDA/
+    chdir: /home/jemizzi/vanda-MAGs-refine/
     output: /report/job-%j.out
     error: /report/job-%j.err

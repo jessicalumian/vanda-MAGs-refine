@@ -25,3 +25,13 @@ rule compute_sig:
         "env-sourmash.yml"
     shell:
         "sourmash compute -k 31 --scaled 1000 {input} -o {output} --name-from-first"
+
+rule assemble:
+    input:
+        expand("DATA/{samples}.fastq.gz", samples=SAMPLES)
+    output:
+        expand("{samples}/final.contigs.fa", samples=SAMPLES)
+    conda:
+        "env-megahit.yml"
+    shell:
+        "megahit --12 {input} --min-contig-len 1500 -o OUTPUT/{samples}/megahit"

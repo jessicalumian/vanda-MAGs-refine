@@ -1,0 +1,4 @@
+channels:
+ - bioconda
+dependences:
+ - megahit=1.2.9
