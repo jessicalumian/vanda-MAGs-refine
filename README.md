@@ -11,3 +11,5 @@ Run snakemake workflow with
 ```
 snakemake --cluster "sbatch -t {cluster.time} -p {cluster.partition} -N {cluster.nodes}" --cluster-config cluster_config.yml --jobs 28 --latency-wait=15 --use-conda
 ```
+
+Based on example from https://github.com/ctb/2019-snakemake-slurm
