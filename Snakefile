@@ -3,7 +3,8 @@ print(SAMPLES)
 
 rule all:
     input:
-        "cmp.mat.matrix.png"
+        "cmp.mat.matrix.png",
+        expand("OUTPUT/MEGAHIT/{samples}/final.contigs.fa", samples=SAMPLES)
 
 rule compare:
     input:
@@ -30,8 +31,10 @@ rule assemble:
     input:
         expand("DATA/{samples}.fastq.gz", samples=SAMPLES)
     output:
-        expand("{samples}/final.contigs.fa", samples=SAMPLES)
+        expand("OUTPUT/MEGAHIT/{samples}/final.contigs.fa", samples=SAMPLES)
     conda:
         "env-megahit.yml"
+    params:
+        input_list=lambda w, input: ".".join(input)
     shell:
-        "megahit --12 {input} --min-contig-len 1500 -o OUTPUT/{samples}/megahit"
+        "megahit --12 {params.input_list} --min-contig-len 1500 -o {output}"
