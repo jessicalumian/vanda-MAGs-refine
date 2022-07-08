@@ -2,7 +2,7 @@
 __default__:
     account: jemizzi
     partition: bmm
-    time: 1-0:00:00 # time limit for each job
+    time: 7-0:00:00 # time limit for each job
     nodes: 1
     chdir: /home/jemizzi/vanda-MAGs-refine/
     output: /report/job-%j.out

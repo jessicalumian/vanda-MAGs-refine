@@ -4,7 +4,7 @@ print(SAMPLES)
 rule all:
     input:
         "cmp.mat.matrix.png",
-        expand("OUTPUT/MEGAHIT/{samples}/final.contigs.fa", samples=SAMPLES)
+        expand("OUTPUT/MEGAHIT/{samples}", samples=SAMPLES)
 
 rule compare:
     input:
@@ -29,12 +29,10 @@ rule compute_sig:
 
 rule assemble:
     input:
-        expand("DATA/{samples}.fastq.gz", samples=SAMPLES)
+        "DATA/{samples}.fastq.gz"
     output:
-        expand("OUTPUT/MEGAHIT/{samples}/final.contigs.fa", samples=SAMPLES)
+        "OUTPUT/MEGAHIT/{samples}/final.contigs.fa"
     conda:
         "env-megahit.yml"
-    params:
-        input_list=lambda w, input: ".".join(input)
     shell:
-        "megahit --12 {params.input_list} --min-contig-len 1500 -o {output}"
+        "megahit --12 {input} --min-contig-len 1500 -o {output}"
